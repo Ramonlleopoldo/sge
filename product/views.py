@@ -21,11 +21,13 @@ class ProductListView(ListView):
             queryset = queryset.filter(category__name__icontains=search_category)
         return queryset
 
+
 class ProductCreateView(CreateView):
     model = models.Product
     form_class = forms.ProductModelForm
     template_name = 'product_create.html'
     success_url = '/products/list/'
+
 
 class ProductUpdateView(UpdateView):
     model = models.Product
@@ -33,10 +35,12 @@ class ProductUpdateView(UpdateView):
     template_name = 'product_update.html'
     success_url = '/products/list/'
 
+
 class ProductDeleteView(DeleteView):
     model = models.Product
     template_name = 'product_delete.html'
     success_url = '/products/list/'
+
 
 class ProductDetailView(DetailView):
     model = models.Product

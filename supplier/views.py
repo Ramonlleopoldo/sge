@@ -12,8 +12,9 @@ class SupplierListView(ListView):
         supplier = super().get_queryset()
         search = self.request.GET.get('search')
         if search:
-            supplier = models.Supplier.objects.filter(name__icontains = search)
+            supplier = models.Supplier.objects.filter(name__icontains=search)
         return supplier
+
 
 class SupplierCreateView(CreateView):
     model = models.Supplier
@@ -21,16 +22,19 @@ class SupplierCreateView(CreateView):
     template_name = 'supplier_create.html'
     success_url = '/suppliers/list/'
 
+
 class SupplierUpdateView(UpdateView):
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_update.html'
     success_url = '/suppliers/list/'
 
+
 class SupplierDeleteView(DeleteView):
     model = models.Supplier
     template_name = 'supplier_delete.html'
     success_url = '/suppliers/list/'
+
 
 class SupplierDetailView(DetailView):
     model = models.Supplier

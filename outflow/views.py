@@ -15,11 +15,13 @@ class OutflowListView(ListView):
             outflow = outflow.filter(product__title__icontains=search)
         return outflow
 
+
 class OutflowCreatedView(CreateView):
     model = models.Outflow
     form_class = forms.OutflowModelForm
     template_name = 'outflow_create.html'
     success_url = '/outflows/list/'
+
 
 class OutflowDetailView(DetailView):
     model = models.Outflow
