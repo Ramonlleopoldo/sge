@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1>Detalhes de marca</h1>
+    <div class=" border p-3 container">
+        <div>
+            <h2>{{brand.name}}</h2>
+            <span><strong>ID: </strong>{{brand.id}}</span><br>
+            <span><strong>Descrição: </strong>{{brand.description}}</span><br>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'brand_update' brand.id %}" class="btn border p-2 mt-3">Editar</a>
+            <a href="{% url 'brand_list' %}" class="btn border p-2 mt-3">Voltar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

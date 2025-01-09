@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1>Detalhes de Produto</h1>
+    <div class=" border p-3 container">
+        <div>
+            <h2>{{product.title}}</h2>
+            <span><strong>ID: </strong>{{product.id}}</span><br>
+            <span><strong>Categoria: </strong>{{product.category}}</span><br>
+            <span><strong>Marca: </strong>{{product.brand}}</span><br>
+            <span><strong>Preço de custo: </strong>{{product.cost_price}}</span><br>
+            <span><strong>Preço de Venda: </strong>{{product.selling_price}}</span><br>
+            <span><strong>Número de serie: </strong>{{product.serie_number}}</span><br>
+            <span><strong>Quantidade: </strong>{{product.quantity}}</span><br>
+        </div>
+        <div class="d-flex justify-content-between"><a href="{% url 'product_update' product.id %}" class="btn border p-2 mt-3">Editar</a><a href="{% url 'product_list' %}" class="btn border p-2 mt-3">Voltar</a></div>
+    </div>
+</div>
+{% endblock %}

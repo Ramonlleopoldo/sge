@@ -3,8 +3,16 @@
 
 {% block content %}
 <h1> Entradas de produtos </h1>
-<div class="position-relative">
-    <button type="button" class="btn btn-success  mb-2"><a href="http://127.0.0.1:8000/outflows/create/" class="text-decoration-none text-light">- Nova saída</a></button>
+<div class="d-flex justify-content-between">
+    <form method=" get" action="{% url 'outflow_list' %}" style="max-width:300px;">
+        <div class=" input-group mb-3">
+            <input type="text" class="form-control" placeholder="Buscar Produto" aria-label="Buscar nome do produto" aria-describedby="button-addon2" name="search">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        </div>
+    </form>
+    <div>
+        <button type="button" class="btn btn-success  mb-2"><a href="http://127.0.0.1:8000/outflows/create/" class="text-decoration-none text-light">- Nova saída</a></button>
+    </div>
 </div>
 <table class="table table-striped table-bordered text-center">
     <thead>
@@ -20,13 +28,13 @@
     <tbody>
         {% for outflow in outflows %}
         <tr>
-            <td>{{outflow.id}}</td>
+            <td class="text-primary">{{outflow.id}}</td>
             <td>{{outflow.product}}</td>
             <td>{{outflow.quantity}}</td>
             <td>{{outflow.description}}</td>
             <td>{{outflow.created_at}}</td>
             <div>
-                <td><a href="#"><i class="bi bi-arrow-repeat"></i></a><a href="#" class="p-2"><i class="bi bi-archive-fill text-danger"></i></a></td>
+                <td><a href="{% url 'outflow_detail' outflow.id %}"><i class="bi bi-eye-fill"></i></a></td>
             </div>
         </tr>
         <tr>

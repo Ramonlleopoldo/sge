@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1>Detalhes do fornecedor(a)</h1>
+    <div class=" border p-3 container">
+        <div>
+            <h2>{{supplier.name}}</h2>
+            <span><strong>ID: </strong>{{supplier.id}}</span><br>
+            <span><strong>Descrição: </strong>{{supplier.description}}</span><br>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'supplier_update' supplier.id %}" class="btn border p-2 mt-3">Editar</a>
+            <a href="{% url 'supplier_list' %}" class="btn border p-2 mt-3">Voltar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

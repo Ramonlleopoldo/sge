@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1>Detalhes de Entrada</h1>
+    <div class=" border p-3 container">
+        <div>
+            <h2>{{inflow.product}}</h2>
+            <span><strong>ID: </strong>{{inflow.id}}</span><br>
+            <span><strong>Fornecedor: </strong>{{inflow.supplier}}</span><br>
+            <span><strong>Quantidade: </strong>{{inflow.quantity}}</span><br>
+            <span><strong>Descrição: </strong>{{inflow.description}}</span><br>
+            <span> <strong>Data de Saída: </strong>{{inflow.created_at}}</span><br>
+        </div>
+        <a href="{% url 'inflow_list' %}" class="btn border p-2 mt-3">Voltar</a>
+    </div>
+</div>
+{% endblock %}

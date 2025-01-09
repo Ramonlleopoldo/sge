@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1>Detalhes da Saída</h1>
+    <div class=" border p-3 container">
+        <div>
+            <h2>{{outflow.product}}</h2>
+            <span><strong>ID: </strong>{{outflow.id}}</span><br>
+            <span><strong>Quantidade: </strong>{{outflow.quantity}}</span><br>
+            <span><strong>Descrição: </strong>{{outflow.description}}</span><br>
+            <span> <strong>Data de Saída: </strong>{{outflow.created_at}}</span><br>
+        </div>
+        <a href="{% url 'outflow_list' %}" class="btn border p-2 mt-3">Voltar</a>
+
+    </div>
+</div>
+{% endblock %}
