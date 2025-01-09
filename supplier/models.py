@@ -7,8 +7,8 @@ class Supplier(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
-class Meta:
-    ordering = ['name']
+    class Meta:
+        ordering = ['name']
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
