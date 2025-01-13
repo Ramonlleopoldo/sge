@@ -11,7 +11,6 @@ class ProductModelForm(forms.ModelForm):
             'serie_number': forms.TextInput(attrs={'class': 'form-control'}),
             'cost_price': forms.NumberInput(attrs={'class': 'form-control'}),
             'selling_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'style': 'max-height: 50px;'}),
         }
         labels = {
@@ -21,6 +20,5 @@ class ProductModelForm(forms.ModelForm):
             'serie_number': 'Número de Série',
             'cost_price': 'Preço de Custo',
             'selling_price': 'Preço de Venda',
-            'quantity': 'Quantidade',
             'description': 'Descrição',
         }

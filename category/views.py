@@ -7,6 +7,7 @@ class CategoryListView(ListView):
     model = models.Category
     template_name = 'category_list.html'
     context_object_name = 'categorys'
+    paginate_by = 3
 
     def get_queryset(self):
         category = super().get_queryset()
@@ -21,6 +22,7 @@ class CategoryCreateView(CreateView):
     form_class = forms.CategoryModelForm
     template_name = 'category_create.html'
     success_url = '/categorys/list/'
+
 
 
 class CategoryUpdateView(UpdateView):

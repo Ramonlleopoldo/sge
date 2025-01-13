@@ -1,0 +1,33 @@
+<style>
+    li {
+        text-decoration: none;
+        list-style: none;
+        border-radius: 10px;
+        max-width: 350px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<div class="border p-3 rounded-2">
+    <ul class="d-flex gap-3 justify-content-center align-items-center flex-wrap">
+        <li class="border p-2 bg-primary flex-fill">
+            <h5>Quantidade de produtos</h5>
+            <h2>{{product_metric.total_quantity}}</h2>
+        </li>
+        <li class="border p-2 bg-danger flex-fill">
+            <h5>Custo de estoque</h5>
+            <h2>R${{product_metric.total_cost_price}}</h2>
+        </li>
+        <li class="border p-2 bg-success flex-fill">
+            <h5>Valor do estoque</h5>
+            <h2>R$ {{product_metric.total_seling_price}}</h2>
+        </li>
+        <li class="border p-2 bg-warning flex-fill">
+            <h5>Lucro do estoque</h5>
+            <h2>R$ {{product_metric.total_profit}}</h2>
+        </li>
+    </ul>
+</div>
