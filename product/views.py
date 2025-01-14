@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 from . import forms
 from app import metrics
@@ -6,7 +7,7 @@ from brand.models import Brand
 from category.models import Category
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = models.Product
     template_name = 'product_list.html'
     context_object_name = 'products'
@@ -33,26 +34,26 @@ class ProductListView(ListView):
         return context
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = models.Product
     form_class = forms.ProductModelForm
     template_name = 'product_create.html'
     success_url = '/products/list/'
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Product
     form_class = forms.ProductModelForm
     template_name = 'product_update.html'
     success_url = '/products/list/'
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Product
     template_name = 'product_delete.html'
     success_url = '/products/list/'
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = models.Product
     template_name = 'product_detail.html'

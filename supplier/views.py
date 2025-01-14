@@ -1,9 +1,10 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 from . import forms
 
 
-class SupplierListView(ListView):
+class SupplierListView(LoginRequiredMixin, ListView):
     model = models.Supplier
     template_name = 'supplier_list.html'
     context_object_name = 'suppliers'
@@ -17,26 +18,26 @@ class SupplierListView(ListView):
         return supplier
 
 
-class SupplierCreateView(CreateView):
+class SupplierCreateView(LoginRequiredMixin, CreateView):
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_create.html'
     success_url = '/suppliers/list/'
 
 
-class SupplierUpdateView(UpdateView):
+class SupplierUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_update.html'
     success_url = '/suppliers/list/'
 
 
-class SupplierDeleteView(DeleteView):
+class SupplierDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Supplier
     template_name = 'supplier_delete.html'
     success_url = '/suppliers/list/'
 
 
-class SupplierDetailView(DetailView):
+class SupplierDetailView(LoginRequiredMixin, DetailView):
     model = models.Supplier
     template_name = 'supplier_detail.html'

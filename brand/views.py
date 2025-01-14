@@ -1,9 +1,10 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 from . import forms
 
 
-class BrandListView(ListView):
+class BrandListView(LoginRequiredMixin, ListView):
     model = models.Brand
     template_name = 'brand_list.html'
     context_object_name = 'brands'
@@ -17,26 +18,26 @@ class BrandListView(ListView):
         return brand
 
 
-class BrandCreatedView(CreateView):
+class BrandCreatedView(LoginRequiredMixin, CreateView):
     model = models.Brand
     form_class = forms.BrandModelForm
     template_name = 'new_brand.html'
     success_url = '/brands/list/'
 
 
-class BrandUpdateView(UpdateView):
+class BrandUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Brand
     form_class = forms.BrandModelForm
     template_name = 'brand_update.html'
     success_url = '/brands/list/'
 
 
-class BrandDeleteView(DeleteView):
+class BrandDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Brand
     template_name = 'brand_delete.html'
     success_url = '/brands/list/'
 
 
-class BrandDetailView(DetailView):
+class BrandDetailView(LoginRequiredMixin, DetailView):
     model = models.Brand
     template_name = 'brand_detail.html'

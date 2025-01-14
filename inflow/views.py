@@ -1,10 +1,10 @@
 from django.views.generic import ListView, CreateView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
-from product.models import Product
 from . import forms
 
 
-class InflowListView(ListView):
+class InflowListView(LoginRequiredMixin, ListView):
     model = models.Inflow
     template_name = 'inflow_list.html'
     context_object_name = 'inflows'
@@ -21,13 +21,13 @@ class InflowListView(ListView):
         return queryset
 
 
-class InflowCreatedView(CreateView):
+class InflowCreatedView(LoginRequiredMixin, CreateView):
     model = models.Inflow
     form_class = forms.InflowModelForm
     template_name = 'inflow_create.html'
     success_url = '/inflows/list/'
 
 
-class InflowDetailView(DetailView):
+class InflowDetailView(LoginRequiredMixin, DetailView):
     model = models.Inflow
     template_name = 'inflow_detail.html'

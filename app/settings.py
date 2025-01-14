@@ -42,8 +42,14 @@ INSTALLED_APPS = [
     'inflow',
     'outflow',
     'product',
-    'supplier'
+    'supplier', 
 ]
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = "/"
+
+LOGOUT_REDIRECT_URL = '/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
