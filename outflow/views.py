@@ -1,6 +1,7 @@
 from django.views.generic import ListView, CreateView, DetailView
 from . import models
 from . import forms
+from app import metrics
 
 
 class OutflowListView(ListView):
@@ -15,6 +16,11 @@ class OutflowListView(ListView):
         if search:
             outflow = outflow.filter(product__title__icontains=search)
         return outflow
+    
+    def  get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sales_metrics'] = metrics.get_sales_metrics()
+        return context
 
 
 class OutflowCreatedView(CreateView):

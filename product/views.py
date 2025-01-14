@@ -1,6 +1,9 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from . import models
 from . import forms
+from app import metrics
+from brand.models import Brand
+from category.models import Category
 
 
 class ProductListView(ListView):
@@ -21,6 +24,13 @@ class ProductListView(ListView):
         if search_category:
             queryset = queryset.filter(category__name__icontains=search_category)
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_metrics'] = metrics.get_product_metric()
+        context['brands'] = Brand.objects.all()
+        context['category'] = Category.objects.all()
+        return context
 
 
 class ProductCreateView(CreateView):
