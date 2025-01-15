@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'inflow',
     'outflow',
     'product',
-    'supplier', 
+    'supplier',
 ]
 
 LOGIN_URL = 'login'
@@ -57,11 +57,9 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = '/login/'
 
 REST_FRAMEWORK = {
-
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-    
 }
 
 MIDDLEWARE = [

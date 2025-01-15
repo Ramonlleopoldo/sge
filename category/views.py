@@ -29,7 +29,6 @@ class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     permission_required = 'category.add_category'
 
 
-
 class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Category
     form_class = forms.CategoryModelForm
@@ -54,6 +53,7 @@ class CategoryDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
 class CategoryListApiView(generics.ListCreateAPIView):
     queryset = models.Category.objects.all()
     serializer_class = serializers.CategorySerializers
+
 
 class CategoryRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Category.objects.all()

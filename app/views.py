@@ -5,7 +5,7 @@ from . import metrics
 
 
 @login_required(login_url='login')
-def home (request):
+def home(request):
     product_metrics = metrics.get_product_metric()
     sales_metrics = metrics.get_sales_metrics()
     daily_sales_data = metrics.get_daily_sales_data()

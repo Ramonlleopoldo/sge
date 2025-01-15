@@ -20,8 +20,8 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search:
             outflow = outflow.filter(product__title__icontains=search)
         return outflow
-    
-    def  get_context_data(self, **kwargs):
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sales_metrics'] = metrics.get_sales_metrics()
         return context
@@ -40,9 +40,11 @@ class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView)
     template_name = 'outflow_detail.html'
     permission_required = 'outflow.view_outflow'
 
+
 class OutflowListApiView(generics.ListCreateAPIView):
     queryset = models.Outflow.objects.all()
     serializer_class = serializers.OutflowSerializers
+
 
 class OutflowDetailsApiView(generics.RetrieveAPIView):
     queryset = models.Outflow.objects.all()

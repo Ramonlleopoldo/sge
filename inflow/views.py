@@ -30,16 +30,18 @@ class InflowCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     template_name = 'inflow_create.html'
     success_url = '/inflows/list/'
     permission_required = 'inflow.add_inflow'
-    
+
 
 class InflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Inflow
     template_name = 'inflow_detail.html'
     permission_required = 'inflow.view_inflow'
 
+
 class InflowListApiView(generics.ListCreateAPIView):
     queryset = models.Inflow.objects.all()
     serializer_class = serializers.InflowSerializers
+
 
 class InflowDetailsApiView(generics.RetrieveAPIView):
     queryset = models.Inflow.objects.all()

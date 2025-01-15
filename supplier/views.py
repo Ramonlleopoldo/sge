@@ -49,9 +49,11 @@ class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
     template_name = 'supplier_detail.html'
     permission_required = 'supplier.view_supplier'
 
+
 class SupplierListApiView(generics.ListCreateAPIView):
     queryset = models.Supplier.objects.all()
     serializer_class = serializers.SupplierSerializers
+
 
 class SupplierRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Supplier.objects.all()

@@ -5,6 +5,5 @@ class OutflowConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'outflow'
 
-
     def ready(self):
-        import outflow.signals
+        import outflow.signals  # noqa: F401

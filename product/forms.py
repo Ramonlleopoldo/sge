@@ -5,7 +5,7 @@ from . import models
 class ProductModelForm(forms.ModelForm):
     class Meta:
         model = models.Product
-        fields = ['title','category', 'brand', 'serie_number', 'cost_price', 'selling_price', 'description']
+        fields = ['title', 'category', 'brand', 'serie_number', 'cost_price', 'selling_price', 'description']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),

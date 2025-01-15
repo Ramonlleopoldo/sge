@@ -8,7 +8,7 @@ from category.models import Category
 
 
 def get_product_metric():
-    products=Product.objects.all()
+    products = Product.objects.all()
     total_cost_price = sum(product.cost_price * product.quantity for product in products)
     total_seling_price = sum(product.selling_price * product.quantity for product in products)
     total_quantity = sum(product.quantity for product in products)
@@ -20,6 +20,7 @@ def get_product_metric():
         total_quantity=total_quantity,
         total_profit=number_format(total_profit, decimal_pos=2, force_grouping=True),
     )
+
 
 def get_sales_metrics():
     outflows = Outflow.objects.all()
@@ -39,6 +40,7 @@ def get_sales_metrics():
         total_sales_profit=number_format(total_sales_profit, decimal_pos=2, force_grouping=True),
     )
 
+
 def get_daily_sales_data():
     today = timezone.now().date()
     dates = [str(today - timezone.timedelta(days=i)) for i in range(6, -1, -1)]
@@ -57,6 +59,7 @@ def get_daily_sales_data():
         values=values,
     )
 
+
 def get_daily_sales_quantity_data():
     today = timezone.now().date()
     dates = [str(today - timezone.timedelta(days=i)) for i in range(6, -1, -1)]
@@ -70,6 +73,7 @@ def get_daily_sales_quantity_data():
         dates=dates,
         values=quantities,
     )
+
 
 def get_graphic_product_category_metric():
     categories = Category.objects.all()

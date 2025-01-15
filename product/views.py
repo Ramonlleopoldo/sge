@@ -28,7 +28,7 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search_category:
             queryset = queryset.filter(category__name__icontains=search_category)
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product_metrics'] = metrics.get_product_metric()
@@ -69,6 +69,7 @@ class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView)
 class ProductListApiView(generics.ListCreateAPIView):
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializers
+
 
 class ProductRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Product.objects.all()
