@@ -1,4 +1,6 @@
 from django.views.generic import ListView, CreateView, DetailView
+from rest_framework import generics
+from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
@@ -37,3 +39,11 @@ class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView)
     model = models.Outflow
     template_name = 'outflow_detail.html'
     permission_required = 'outflow.view_outflow'
+
+class OutflowListApiView(generics.ListCreateAPIView):
+    queryset = models.Outflow.objects.all()
+    serializer_class = serializers.OutflowSerializers
+
+class OutflowDetailsApiView(generics.RetrieveAPIView):
+    queryset = models.Outflow.objects.all()
+    serializer_class = serializers.OutflowSerializers

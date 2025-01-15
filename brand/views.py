@@ -1,4 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from rest_framework import generics
+from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
@@ -46,3 +48,12 @@ class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Brand
     template_name = 'brand_detail.html'
     permission_required = 'brand.view_brand'
+
+
+class BrandListApiView(generics.ListCreateAPIView):
+    queryset = models.Brand.objects.all()
+    serializer_class = serializers.BrandSerializers
+
+class BrandRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Brand.objects.all()
+    serializer_class = serializers.BrandSerializers

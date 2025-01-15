@@ -1,4 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from rest_framework import generics
+from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
@@ -47,3 +49,12 @@ class CategoryDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
     model = models.Category
     template_name = 'category_detail.html'
     permission_required = 'category.view_category'
+
+
+class CategoryListApiView(generics.ListCreateAPIView):
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializers
+
+class CategoryRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializers

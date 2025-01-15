@@ -18,4 +18,5 @@ urlpatterns = [
     path('', include('product.urls')),
     path('', include('inflow.urls')),
     path('', include('outflow.urls')),
+    path('api/v1/', include('authetication.urls'))
 ]

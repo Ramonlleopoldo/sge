@@ -1,4 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from rest_framework import generics
+from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
@@ -46,3 +48,11 @@ class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
     model = models.Supplier
     template_name = 'supplier_detail.html'
     permission_required = 'supplier.view_supplier'
+
+class SupplierListApiView(generics.ListCreateAPIView):
+    queryset = models.Supplier.objects.all()
+    serializer_class = serializers.SupplierSerializers
+
+class SupplierRestriveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Supplier.objects.all()
+    serializer_class = serializers.SupplierSerializers
