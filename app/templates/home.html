@@ -6,14 +6,18 @@ SGE - Home
 
 {% block content %}
 
+{% if perms.product.view_product and perms.inflow.view_inflow %}
 {% include 'components/_product_metric.html' %}
+{% endif %}
 
+{% if perms.outflow.view_outflow %}
 {% include 'components/_sales_metric.html' %}
-
+{% endif %}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="row mt-4 justify-content-center">
+    {% if perms.outflow.view_outflow %}
     <div class="col-md-6 text-center">
         <h5 class="text-center mb-3">Valor de vendas (Últimos 7 Dias)</h5>
         <canvas id="dailySalesChart"></canvas>
@@ -22,6 +26,7 @@ SGE - Home
         <h5 class="text-center mb-3">Quantidade de Vendas Diárias</h5>
         <canvas id="dailySalesQuantityChart"></canvas>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var dailySalesData = JSON.parse('{{ daily_sales_data|safe }}');
@@ -74,7 +79,8 @@ SGE - Home
         });
     </script>
 </div>
-
+{% endif %}
+{% if perms.product.view_product %}
 <div class="row mt-5 justify-content-center">
     <div class="col-md-6 text-center">
         {% if product_count_by_category != '{}' %}
@@ -139,4 +145,5 @@ SGE - Home
         });
     </script>
 </div>
+{% endif %}
 {% endblock %}

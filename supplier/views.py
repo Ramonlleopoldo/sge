@@ -1,14 +1,15 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
 
 
-class SupplierListView(LoginRequiredMixin, ListView):
+class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Supplier
     template_name = 'supplier_list.html'
     context_object_name = 'suppliers'
     paginate_by = 3
+    permission_required = 'supplier.view_supplier'
 
     def get_queryset(self):
         supplier = super().get_queryset()
@@ -18,26 +19,30 @@ class SupplierListView(LoginRequiredMixin, ListView):
         return supplier
 
 
-class SupplierCreateView(LoginRequiredMixin, CreateView):
+class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_create.html'
     success_url = '/suppliers/list/'
+    permission_required = 'supplier.add_supplier'
 
 
-class SupplierUpdateView(LoginRequiredMixin, UpdateView):
+class SupplierUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_update.html'
     success_url = '/suppliers/list/'
+    permission_required = 'supplier.change_supplier'
 
 
-class SupplierDeleteView(LoginRequiredMixin, DeleteView):
+class SupplierDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Supplier
     template_name = 'supplier_delete.html'
     success_url = '/suppliers/list/'
+    permission_required = 'supplier.delete_supplier'
 
 
-class SupplierDetailView(LoginRequiredMixin, DetailView):
+class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Supplier
     template_name = 'supplier_detail.html'
+    permission_required = 'supplier.view_supplier'

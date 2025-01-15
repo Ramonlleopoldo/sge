@@ -1,5 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
 from app import metrics
@@ -7,11 +7,12 @@ from brand.models import Brand
 from category.models import Category
 
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Product
     template_name = 'product_list.html'
     context_object_name = 'products'
     paginate_by = 3
+    permission_required = 'product.view_product'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -34,26 +35,30 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Product
     form_class = forms.ProductModelForm
     template_name = 'product_create.html'
     success_url = '/products/list/'
+    permission_required = 'product.add_product'
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Product
     form_class = forms.ProductModelForm
     template_name = 'product_update.html'
     success_url = '/products/list/'
+    permission_required = 'product.change_product'
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Product
     template_name = 'product_delete.html'
     success_url = '/products/list/'
+    permission_required = 'product.delete_product'
 
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Product
     template_name = 'product_detail.html'
+    permission_required = 'product.view_product'

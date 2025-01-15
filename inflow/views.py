@@ -1,14 +1,15 @@
 from django.views.generic import ListView, CreateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
 
 
-class InflowListView(LoginRequiredMixin, ListView):
+class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Inflow
     template_name = 'inflow_list.html'
     context_object_name = 'inflows'
     paginate_by = 3
+    permission_required = 'inflow.view_inflow'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -21,13 +22,16 @@ class InflowListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class InflowCreatedView(LoginRequiredMixin, CreateView):
+class InflowCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Inflow
     form_class = forms.InflowModelForm
     template_name = 'inflow_create.html'
     success_url = '/inflows/list/'
+    permission_required = 'inflow.add_inflow'
+    
 
 
-class InflowDetailView(LoginRequiredMixin, DetailView):
+class InflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Inflow
     template_name = 'inflow_detail.html'
+    permission_required = 'inflow.view_inflow'

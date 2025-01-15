@@ -1,15 +1,16 @@
 from django.views.generic import ListView, CreateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from . import models
 from . import forms
 from app import metrics
 
 
-class OutflowListView(LoginRequiredMixin, ListView):
+class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = models.Outflow
     template_name = 'outflow_list.html'
     context_object_name = 'outflows'
     paginate_by = 3
+    permission_required = 'outflow.view_outflow'
 
     def get_queryset(self):
         outflow = super().get_queryset()
@@ -24,13 +25,15 @@ class OutflowListView(LoginRequiredMixin, ListView):
         return context
 
 
-class OutflowCreatedView(LoginRequiredMixin, CreateView):
+class OutflowCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Outflow
     form_class = forms.OutflowModelForm
     template_name = 'outflow_create.html'
     success_url = '/outflows/list/'
+    permission_required = 'outflow.add_outflow'
 
 
-class OutflowDetailView(LoginRequiredMixin, DetailView):
+class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Outflow
     template_name = 'outflow_detail.html'
+    permission_required = 'outflow.view_outflow'
