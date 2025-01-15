@@ -16,7 +16,7 @@
     </form>
     {% if perms.inflow.add_inflow %}
     <div class=" align-self-end">
-        <button type="button" class="btn btn-success  mb-2 "><a href="http://127.0.0.1:8000/inflows/create/" class="text-decoration-none text-light">Nova Entrada</a></button>
+        <button type="button" class="btn btn-success  mb-2 "><a href="{% url 'inflow_create' %}" class="text-decoration-none text-light">Nova Entrada</a></button>
     </div>
     {% endif %}
 </div>

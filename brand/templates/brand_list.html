@@ -12,7 +12,7 @@
     </form>
     {% if perms.brand.add_brand %}
     <div class="position-relative">
-        <button type="button" class="btn btn-success  mb-2"><a href="http://127.0.0.1:8000/brands/create/" class="text-decoration-none text-light">Nova marca</a></button>
+        <button type="button" class="btn btn-success  mb-2"><a href="{% url 'brand_create' %}" class="text-decoration-none text-light">Nova marca</a></button>
     </div>
     {% endif %}
 </div>

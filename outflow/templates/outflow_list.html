@@ -16,7 +16,7 @@
     </form>
     {% if perms.outflow.add_outflow %}
     <div>
-        <button type="button" class="btn btn-success  mb-2"><a href="http://127.0.0.1:8000/outflows/create/" class="text-decoration-none text-light">- Nova saída</a></button>
+        <button type="button" class="btn btn-success  mb-2"><a href="{% url 'outflow_create' %}" class="text-decoration-none text-light">- Nova saída</a></button>
     </div>
     {% endif %}
 </div>

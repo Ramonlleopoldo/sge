@@ -31,19 +31,9 @@
         </select>
         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
     </div>
-    <!--
-    <div class=" input-group mb-3" style="max-width: 300px ;">
-        <input type="text" class="form-control" placeholder="Buscar pela Marca do produto" aria-label="Buscar fornecedor" aria-describedby="button-addon2" name="search_brand">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
-    </div>
-    <div class=" input-group mb-3" style="max-width: 300px ;">
-        <input type="text" class="form-control" placeholder="Buscar pela categoria do produto" aria-label="Buscar categoria de produto" aria-describedby="button-addon2" name="search_category">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
-    </div>
-    -->
     {% if perms.product.add_product %}
     <div>
-        <button type="button" class="btn btn-success mb-2"><a href="http://127.0.0.1:8000/products/create/" class="text-decoration-none text-light">Novo produto</a></button>
+        <button type="button" class="btn btn-success mb-2"><a href="{% url 'product_create' %}" class="text-decoration-none text-light">Novo produto</a></button>
     </div>
     {% endif %}
 </form>
