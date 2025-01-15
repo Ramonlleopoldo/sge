@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, DetailView
+from django.urls import reverse_lazy
 from rest_framework import generics
 from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -28,7 +29,7 @@ class InflowCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     model = models.Inflow
     form_class = forms.InflowModelForm
     template_name = 'inflow_create.html'
-    success_url = '/inflows/list/'
+    success_url = reverse_lazy('inflow_list')
     permission_required = 'inflow.add_inflow'
 
 

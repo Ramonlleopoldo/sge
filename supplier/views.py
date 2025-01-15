@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.urls import reverse_lazy
 from rest_framework import generics
 from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -25,7 +26,7 @@ class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_create.html'
-    success_url = '/suppliers/list/'
+    success_url = reverse_lazy('supplier_list')
     permission_required = 'supplier.add_supplier'
 
 
@@ -33,14 +34,14 @@ class SupplierUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     model = models.Supplier
     form_class = forms.SupplierModelForm
     template_name = 'supplier_update.html'
-    success_url = '/suppliers/list/'
+    success_url = reverse_lazy('supplier_list')
     permission_required = 'supplier.change_supplier'
 
 
 class SupplierDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Supplier
     template_name = 'supplier_delete.html'
-    success_url = '/suppliers/list/'
+    success_url = reverse_lazy('supplier_list')
     permission_required = 'supplier.delete_supplier'
 
 

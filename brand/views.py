@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.urls import reverse_lazy
 from rest_framework import generics
 from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -25,7 +26,7 @@ class BrandCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = models.Brand
     form_class = forms.BrandModelForm
     template_name = 'new_brand.html'
-    success_url = '/brands/list/'
+    success_url = reverse_lazy('brand_list')
     permission_required = 'brand.add_brand'
 
 
@@ -33,14 +34,14 @@ class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Brand
     form_class = forms.BrandModelForm
     template_name = 'brand_update.html'
-    success_url = '/brands/list/'
+    success_url = reverse_lazy('brand_list')
     permission_required = 'brand.change_brand'
 
 
 class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Brand
     template_name = 'brand_delete.html'
-    success_url = '/brands/list/'
+    success_url = reverse_lazy('brand_list')
     permission_required = 'brand.delete_brand'
 
 

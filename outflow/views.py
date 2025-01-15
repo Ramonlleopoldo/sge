@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, DetailView
+from django.urls import reverse_lazy
 from rest_framework import generics
 from . import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -31,7 +32,7 @@ class OutflowCreatedView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     model = models.Outflow
     form_class = forms.OutflowModelForm
     template_name = 'outflow_create.html'
-    success_url = '/outflows/list/'
+    success_url = reverse_lazy('outflow_list')
     permission_required = 'outflow.add_outflow'
 
 
